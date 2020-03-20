@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+
+    def groupProjectID = 'com.an.optimize'
+    def artifactProjectID = 'optimize'
+    def publishVersionID = '1.0'
+
+    userOrg = 'murthyanitaa'
+    repoName = 'Optimize'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'Android library for displaying data based on JSON configuration fetched from server. With this library, you can kiss goodbye to string.xml, dimen.xml, arrays.xml. Keep all your string/integer/array config in one file. The library will automatically fetch the data from the url you provide.'
+    website = 'https://github.com/anitaa1990/Optimize'
+}
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+//        def API_URL = "API_URL"
+//        def EXPIRED_CALL_API = "EXPIRED_CALL_API"
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//
+//            buildConfigField "String", "API_URL", "\"https://ddc29f40.ngrok.io/\""
+//            buildConfigField "long", "EXPIRED_CALL_API", '5000'
+        }
+        debug {
+//            buildConfigField "String", "API_URL", "\"https://ddc29f40.ngrok.io/\""
+//            buildConfigField "long", "EXPIRED_CALL_API", '5000'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    /* add */
+    //    implementation files('libs/sensoro-sensor-kit.jar')
+    implementation files('libs/sensorocloud-4.1.2.jar')
+    implementation files('libs/sensoro-scanner-1.0.1.jar')
+    implementation files('libs/sensoro-beacon-kit-4.3.jar')
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.loopj.android:android-async-http:1.4.10'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.10'
+    //Thông báo
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-compat:27.1.1'
+//    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+    //noinspection GradleCompatible
+//    implementation 'com.android.support:localbroadcastmanager:28.0.0'
+
+}
